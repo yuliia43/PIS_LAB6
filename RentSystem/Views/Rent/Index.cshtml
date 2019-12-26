@@ -1,0 +1,35 @@
+﻿ @{
+   Layout = "/views/shared/_layout.cshtml";
+}
+<div class="window">
+    <table>
+        <tr>
+            <td>Address</td>
+            <td>Town</td>
+            <td>Rooms</td>
+            <td>Price</td>
+            <td>Status</td>
+            <td></td>
+        </tr>
+        @{
+            foreach (var appartment in ViewBag.Appartments)
+            {
+                if (appartment.Status == "not rented")
+                {
+                    <tr>
+                        <td>@appartment.Address</td>
+                        <td>@appartment.Town</td>
+                        <td>@appartment.Number_Of_Rooms</td>
+                        <td>@appartment.Monthly_Price</td>
+                        <td>
+                            <form method="get" action="/Rent/Issue">
+                                <input type="hidden" value="@appartment.Building_Id" name="buildingId" />
+                                <button onclick="this.form.submit">RENT</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+        }
+    </table>
+    </div>
